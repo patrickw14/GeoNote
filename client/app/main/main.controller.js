@@ -19,7 +19,12 @@ angular.module('geonoteApp')
     	map.on('locationfound', function(e) {
     		var radius = e.accuracy / 2;
 
-        L.marker(e.latlng).addTo(map)
+        var redMarker = L.AwesomeMarkers.icon({
+          icon: 'home',
+          markerColor: 'red'
+        });
+
+        L.marker(e.latlng, {icon: redMarker}).addTo(map)
           .bindPopup("You are within " + radius + " meters of this point").openPopup();
 
         L.circle(e.latlng, radius).addTo(map);
